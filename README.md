@@ -15,17 +15,23 @@ go run ./cmd/loglint/main.go ./...
 ```
 
 ## Использование с golangci-lint (Module Plugin)
-С версии golangci-lint 1.57+ поддерживаются Module Plugins.
+1. Соберите линтер
+``` bash
+go build -buildmode=plugin plugin/main.go
+```
 
-Добавьте в ваш .golangci.yml:
+2. Добавьте main.so в корень проекта
+3. Добавьте в ваш .golangci.yml:
 
 ```yaml
-linters-settings:
-  custom:
-    loglint:
-      path: [github.com/TrueKotenka/loglint]
-      description: "Checks log format and sensitive data"
-      original-url: [github.com/TrueKotenka/loglint]
+version: "2"
+linters:
+  settings:
+    custom:
+      loglint:
+        path: /main.so
+        description: Checks log format and sensitive data
+        original-url: github.com/TrueKotenka/loglint
 ```
 Запустите:
 
