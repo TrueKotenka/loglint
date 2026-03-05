@@ -6,7 +6,6 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
-// Экспортируемая переменная, которую ищет golangci-lint
 var AnalyzerPlugin analyzerPlugin
 
 type analyzerPlugin struct{}

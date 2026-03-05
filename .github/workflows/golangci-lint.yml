@@ -27,6 +27,6 @@ jobs:
         run: |
           $(go env GOPATH)/bin/golangci-lint custom
 
-      - name: Run linter
+      - name: Run linter on library
         run: |
           ./custom-gcl run ./...
