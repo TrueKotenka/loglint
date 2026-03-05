@@ -1,0 +1,34 @@
+# LogLint
+
+LogLint — это линтер для Go, совместимый с `golangci-lint`, предназначенный для строгой валидации лог-сообщений (`log/slog`, `go.uber.org/zap`).
+
+## Правила
+1. Лог-сообщения должны начинаться со строчной буквы (поддерживается авто-исправление `SuggestedFixes`).
+2. Лог-сообщения должны быть только на английском языке.
+3. Лог-сообщения не должны содержать спецсимволы или эмодзи.
+4. Лог-сообщения не должны содержать чувствительные данные (password, token, api_key и т.д.).
+
+## Локальный запуск (Singlechecker)
+Вы можете собрать линтер как самостоятельный бинарник:
+```bash
+go run ./cmd/loglint/main.go ./...
+```
+
+## Использование с golangci-lint (Module Plugin)
+С версии golangci-lint 1.57+ поддерживаются Module Plugins.
+
+Добавьте в ваш .golangci.yml:
+
+```yaml
+linters-settings:
+  custom:
+    loglint:
+      path: [github.com/TrueKotenka/loglint]
+      description: "Checks log format and sensitive data"
+      original-url: [github.com/TrueKotenka/loglint]
+```
+Запустите:
+
+```bash
+golangci-lint run
+```
